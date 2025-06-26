@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unreplied Contacts</title>
+  <link rel="icon" href="/img/logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body id="page-top">
+
+<div id="wrapper">
+  <%- include('../layout/sidebar') %>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <%- include('../layout/topbar') %>
+
+      <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Unreplied Contact Messages</h1>
+
+        <!-- Flash Messages -->
+        <script>
+          <% if (successMessage && successMessage.length > 0) { %>
+            Swal.fire({ icon: 'success', title: 'Success!', text: '<%= successMessage[0] %>', timer: 2000, showConfirmButton: false });
+          <% } %>
+          <% if (errorMessage && errorMessage.length > 0) { %>
+            Swal.fire({ icon: 'error', title: 'Error!', text: '<%= errorMessage[0] %>', timer: 2000, showConfirmButton: false });
+          <% } %>
+        </script>
+        <!-- Table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Pending Replies</h6></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% contact.forEach((c, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= c.name %></td>
+                    <td><%= c.email %></td>
+                    <td><%= c.subject || '-' %></td>
+                    <td><%= c.message %></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#replyModal" onclick="setReplyData('<%= c._id %>', '<%= c.name %>', '<%= c.email %>', '<%= c.subject || 'No Subject' %>')">Reply</button>
+                    </td>
+                  </tr>
+                <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%- include('../layout/footer') %>
+    </div>
+  </div>
+</div>
+
+<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+<%- include('../layout/logoutModal') %>
+
+<!-- Reply Modal -->
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form id="replyForm" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="replyModalLabel">Reply to Contact</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Name:</strong> <span id="modalName"></span></p>
+          <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+          <p><strong>Subject:</strong> <span id="modalSubject"></span></p>
+          <div class="form-group">
+            <label for="reply">Your Reply</label>
+            <textarea name="reply" class="form-control" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Send Reply</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/js/demo/datatables-demo.js"></script>
+
+<script>
+  function setReplyData(id, name, email, subject) {
+    document.getElementById('modalName').innerText = name;
+    document.getElementById('modalEmail').innerText = email;
+    document.getElementById('modalSubject').innerText = subject;
+    document.getElementById('replyForm').action = `/admin/reply-to-contact/${id}?_method=PUT`;
+  }
+</script>
+</body>
+</html>

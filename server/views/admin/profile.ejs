@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Profile</title>
+  <link rel="icon" href="/img/logo.png" type="image/png">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .edit-icon {
+            cursor: pointer;
+            margin-left: 8px;
+            color: #4e73df;
+        }
+        .editable {
+            border: none;
+            background-color: transparent;
+        }
+        .editable:focus {
+            border-bottom: 1px solid #4e73df;
+            outline: none;
+        }
+    </style>
+</head>
+<body id="page-top">
+
+<div id="wrapper">
+    <%- include('layout/sidebar') %>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <%- include('layout/topbar') %>
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800">Admin Profile</h1>
+                 <!-- SweetAlert Alerts -->
+          <script>
+            <% if (successMessage && successMessage.length > 0) { %>
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: '<%= successMessage[0] %>',
+              timer: 2000,
+              showConfirmButton: false
+            });
+            <% } %>
+
+            <% if (errorMessage && errorMessage.length > 0) { %>
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: '<%= errorMessage[0] %>',
+              timer: 2000,
+              showConfirmButton: false
+            });
+            <% } %>
+          </script>
+
+                <form id="profileForm" action="/admin/update-profile" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="/uploads/profile/<%= profile.profilePic || 'default.jpg' %>" class="img-fluid rounded-circle mb-2" width="150" alt="Profile" id="profile-image-preview">
+                            <input type="file" name="profilePic" class="form-control mt-2" id="image-upload-input">
+                        </div>
+
+                        <div class="col-md-8">
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="font-weight-bold">First Name</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="text" name="firstName" value="<%= User.firstName %>" class="form-control editable" readonly>
+                                    <i class="fas fa-pen edit-icon"></i>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="font-weight-bold">Last Name</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="text" name="lastName" value="<%= User.lastName %>" class="form-control editable" readonly>
+                                    <i class="fas fa-pen edit-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Email (readonly) -->
+                            <div class="mb-3">
+                                <label class="font-weight-bold">Email</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="email" name="email" value="<%= User.email %>" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label class="font-weight-bold">Phone</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="text" name="phone" value="<%= profile.phone %>" class="form-control editable" readonly>
+                                    <i class="fas fa-pen edit-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="mb-3">
+                                <label class="font-weight-bold">Address</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="text" name="address" value="<%= profile.address %>" class="form-control editable" readonly>
+                                    <i class="fas fa-pen edit-icon"></i>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <%- include('layout/footer') %>
+    </div>
+</div>
+
+<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+<%- include('layout/logoutModal') %>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+
+<script>
+    document.querySelectorAll('.edit-icon').forEach(icon => {
+        icon.addEventListener('click', () => {
+            const input = icon.previousElementSibling;
+            input.removeAttribute('readonly');
+            input.classList.add('border');
+            if (input.tagName === 'SELECT') {
+                input.removeAttribute('disabled');
+            }
+            input.focus();
+        });
+    });
+    // Handle image upload preview
+    document.getElementById('image-upload-input').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = function() {
+            // Update the src of the image with the selected file
+            document.getElementById('profile-image-preview').src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); // Convert image file to base64 string for preview
+        }
+    });
+</script>
+
+</body>
+</html>

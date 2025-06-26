@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Admin - Deactivated Users</title>
+  <link rel="icon" href="/img/logo.png" type="image/png">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include('../layout/sidebar') %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <%- include('../layout/topbar') %>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Deactivated Users</h1>
+          <p class="mb-4">Here you can view and restore deactivated users.</p>
+
+          <!-- SweetAlert Alerts -->
+          <script>
+            <% if (successMessage && successMessage.length > 0) { %>
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '<%= successMessage[0] %>',
+                timer: 2000,
+                showConfirmButton: false
+              });
+            <% } %>
+
+            <% if (errorMessage && errorMessage.length > 0) { %>
+              Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '<%= errorMessage[0] %>',
+                timer: 2000,
+                showConfirmButton: false
+              });
+            <% } %>
+          </script>
+
+          <!-- Deactivated Users Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Deactivated Users</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Sl No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Verified</th>
+                      <th>Status</th>
+                      <th>Deactivated At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Sl No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Verified</th>
+                      <th>Status</th>
+                      <th>Deactivated At</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% allUsers.forEach(function(user, index) { %>
+                      <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= user.firstName %> <%= user.lastName %></td>
+                        <td><%= user.email %></td>
+                        <td>
+                          <% if (user.isVerified) { %>
+                            <span class="badge badge-success">Yes</span>
+                          <% } else { %>
+                            <span class="badge badge-warning">No</span>
+                          <% } %>
+                        </td>
+                        <td>
+                          <span class="badge badge-danger">Deactivated</span>
+                        </td>
+                        <td><%= new Date(user.updatedAt).toLocaleString() %></td>
+                        <td>
+                          <a href="/admin/user/<%= user._id %>" class="btn btn-info btn-sm mb-1">Details</a>
+                          <form action="/admin/restore-user/<%= user._id %>?_method=PUT" method="POST" class="swal-form restore-form d-inline">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" class="btn btn-success btn-sm">Restore</button>
+                          </form>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <%- include('../layout/footer') %>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <%- include('../layout/logoutModal') %>
+
+  <!-- JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/js/sb-admin-2.min.js"></script>
+
+  <!-- DataTables Scripts -->
+  <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="/js/demo/datatables-demo.js"></script>
+
+  <!-- SweetAlert Restore Confirmation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const swalForms = document.querySelectorAll('.swal-form');
+
+      swalForms.forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const isRestore = form.classList.contains('restore-form');
+          const actionText = isRestore ? 'restore' : 'disable';
+          const actionUrl = form.getAttribute('action');
+
+          Swal.fire({
+            title: `Are you sure you want to ${actionText} this user?`,
+            icon: isRestore ? 'info' : 'warning',
+            showCancelButton: true,
+            confirmButtonColor: isRestore ? '#28a745' : '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: `Yes, ${actionText} user`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit();
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

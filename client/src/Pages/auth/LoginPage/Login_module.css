@@ -1,0 +1,238 @@
+
+:root{
+    --yellow:#F5EA4D;
+    --blue: #0164AB;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.login-section{
+    width: 100% !important;
+    height: 550px !important;
+    background-image: linear-gradient(to right top,#FDFAD5,white);
+    padding: 20px 0 !important;
+   
+
+    .container .row{
+        display: flex;
+        justify-content: center;
+        gap: 30px !important;
+    }
+}
+
+.loginimg_area{
+    height: 450px !important;
+    width: 35% !important;
+}
+ 
+
+.login_img{
+    border-radius: 47px !important;
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.4)) !important;
+    width: 20% !important;
+    height: 100% !important;
+    object-fit: cover;
+
+    &:hover{
+        transform: scale(1.05);
+        transition: 0.5s ease-in-out !important;
+        cursor: pointer;
+    }
+    &:active{
+        transform: scale(0.9);
+        transition: 0.5s ease-in-out !important;
+    }
+    &:focus{
+        outline: none !important;
+    }
+
+}
+
+
+
+.login-form-area{
+    width: 45% !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 0px !important;
+    height: auto !important;
+    /* overflow: hidden !important; */
+
+    .heading p span{
+        color: black !important;
+        background-color: none !important;
+    }
+}
+
+.expen{
+ padding: 0px 20px;
+}
+
+.expensioo {
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to right, #02C0FC 30%, #001A69 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center !important;
+}
+  
+
+  input[type="submit"] {
+    border: none !important;
+    background-color: var(--blue);
+    color: white;
+}
+
+input[type="submit"]:hover {
+
+    transform: scale(0.9);
+    transition: 0.5s !important;
+    
+}
+
+input[type="submit"]:active{
+    transform: scale(0.7);
+    background-color: white !important;
+}
+
+.expensioo{
+    font-family: "Roboto Slab", serif;
+    position: relative;
+}
+.expensioo::after{
+    content: "";
+    background: url(./../../../assets/img/logo.png) no-repeat;
+    background-repeat: no-repeat;
+    width: 20%;
+    height: 50px;
+    position: absolute;
+    margin-left: 10px;
+}
+
+.forgot {
+    font-size: 0.9rem;
+}
+  
+.terms{
+ padding-left: 230px;
+}
+.terms-links a {
+    font-size: 0.875rem;
+}
+  
+.title-icon{
+    width: 94px !important;
+    height: 50px !important;
+    margin-left: 10px;
+    /* object-fit: cover; */
+}
+
+
+
+/*================== media quearies start=================  */
+
+@media screen and (max-width: 991px) {
+    .login-section{
+        height: 550px !important;
+        width: 100% !important;
+        background: url(./../../../assets/img/AuthIcon/loginsite.png) no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+        position: relative !important;
+        
+    }
+
+    
+    .loginimg_area{
+       display: none !important;
+    }
+
+    .login-form-area{
+        position: absolute !important;
+        left: 50%;
+        top: 50%;
+        background-color: rgba(142, 78, 78, 0.42) !important;
+        transform: translate(-50%, -50%);
+        backdrop-filter: blur(15px);
+        height: 80% !important;
+        width: 70% !important;
+        padding: 30px 15px !important;
+        border-radius: 22px !important;
+        border: 3px solid rgb(255, 255, 255) !important;
+        /* padding: 20px 20px !important; */
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.562), 
+            0px 8px 40px rgba(0, 0, 0, 0.411) !important;
+
+
+       .input-area2{ 
+            margin-bottom:10px !important ;
+        }
+
+        input[type="submit"] {
+            margin-top: 8px !important;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 767px) {
+    .login-form-area{
+        position: absolute !important;
+        width: 80% !important;
+        height: 480px !important;
+        border: none !important;
+    }
+
+    form .new-user .terms-links{
+        display: none !important;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .login-section{
+        padding: 0px !important;
+        width: 100% !important;
+        height: 100vh !important;
+
+
+        .heading .sub-text{
+            .sub1{
+                display: none !important;
+            }
+            .sub2{
+                display: block !important;
+                color: black !important;
+                font-size: 20px !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+
+    .login-form-area{
+       width: 100% !important;
+        height: 100vh !important;
+        margin: 0px !important;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+
+        
+        .sign{
+            color: var(--yellow) !important;
+        }
+    }
+    
+
+    .expensioo{
+        font-size: 25px !important;
+    }
+
+
+   form .new-user .terms-links{
+        display: none !important;
+    }
+}
