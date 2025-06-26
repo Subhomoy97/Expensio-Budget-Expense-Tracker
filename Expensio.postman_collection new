@@ -1,0 +1,708 @@
+{
+	"info": {
+		"_postman_id": "0dcaedea-7e56-4ec6-be6e-bd6802d1118d",
+		"name": "Expensio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40879798"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Papai\", \r\n    \"lastName\":\"Chatterjee\", \r\n    \"email\":\"uspapai7@gmail.com\",\r\n    \"password\":\"Papai@97\", \r\n    \"confirmPassword\":\"Papai@97\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"uspapai7@gmail.com\",\r\n    \"otp\":\"5366\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/verify-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"subhomoychatterjee99@gmail.com\",\r\n    \"password\":\"Papai@97\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA3YzM5OTNmMWE5ZmU5ZTFlZTgzMjMiLCJlbWFpbCI6InNobWFAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUzMzk3NTcsImV4cCI6MTc0NTM0MzM1N30.ulfGs-BR97-5u8nFNCZI9Bx7-t3M35cauEpC_OpL6DE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/update-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"uspapai7@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/forget-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"confirmPassword\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA3YzM5OTNmMWE5ZmU5ZTFlZTgzMjMiLCJpYXQiOjE3NDUzMzk4NDEsImV4cCI6MTc0NTM0MzQ0MX0.uCSZQ13LEpu2Gs_evHuL_SZtMcdunzYDfsRvrFePE0Y"
+					},
+					"response": []
+				},
+				{
+					"name": "Resend OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"uspapai7@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/auth/resend-otp"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Create Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODMwZTg5ZGZkNzA3ZTY2ZDI1ZDEwNGMiLCJpYXQiOjE3NDgxMjIyMTgsImV4cCI6MTc0ODIwODYxOH0.GuNDIo9EGEbh4v_ykZTcHBo4iUapfaDBSAwgAfkgqF8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "address",
+									"value": "Kolkata",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "8013579872",
+									"type": "text"
+								},
+								{
+									"key": "profilePic",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/logo (2).png"
+								}
+							]
+						},
+						"url": "http://localhost:3010/user/profile/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE0OWUzNWU4ZmIzOTcxOWIxMWU0OGEiLCJpYXQiOjE3NDYyODk3MzEsImV4cCI6MTc0NjI5MzMzMX0.s9aclUPymxib5bHhjrW9gSbLuy-NNChmLPkUdnX_We8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "9087654329",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:3010/user/profile/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODMwZTg5ZGZkNzA3ZTY2ZDI1ZDEwNGMiLCJpYXQiOjE3NDgxMjIyMTgsImV4cCI6MTc0ODIwODYxOH0.GuNDIo9EGEbh4v_ykZTcHBo4iUapfaDBSAwgAfkgqF8",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/user/profile"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Budget",
+			"item": [
+				{
+					"name": "Set Budget",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE3NDM5MjQ0MzY5NzZmODg3Y2YxYzIiLCJpYXQiOjE3NDY4NjY3MDcsImV4cCI6MTc0Njg3MDMwN30.tvFu4AiMF8jDcF_80tGmkmtFRVspoAe62QLxkGutEqo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\":\"6816b0ac7d374baf6194dfbd\",\r\n    \"amount\":\"1000\",\r\n    \"frequency\":\"daily\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/set-budget"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Budgets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE3NDM5MjQ0MzY5NzZmODg3Y2YxYzIiLCJpYXQiOjE3NDY1MjA2NTIsImV4cCI6MTc0NjUyNDI1Mn0.DKbBwj4pMYi0N47WR7Pjm3C1DzAxe2uX08v5IrKzGSA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/get-budgets"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Budgets",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE0OWUzNWU4ZmIzOTcxOWIxMWU0OGEiLCJpYXQiOjE3NDYyMTkxMDgsImV4cCI6MTc0NjIyMjcwOH0.nPyHyealYzLdGpoTWjCqfmjW0Cz4sFfIwDYZzsAXP9Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":\"5000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/update-budget/6815315d600353d410166281"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Budget",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE3NDM5MjQ0MzY5NzZmODg3Y2YxYzIiLCJpYXQiOjE3NDY0NzgyMTQsImV4cCI6MTc0NjQ4MTgxNH0.KOAUzbRm7jDMJEkg6vc8BRSY1wQASn2HAINsYATMZXU",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/delete-budget/6818e92d600353d4101662e3"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Budget Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDc2NzU1NjIsImV4cCI6MTc0Nzc2MTk2Mn0.75_hHhm-9jbUAVRZYJSEjw9m99Zzg4RhEnGavjfw9O4",
+								"type": "text"
+							}
+						],
+						"url": "https://expensio-nkvc.onrender.com/api/get-budget-details"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE0OWUzNWU4ZmIzOTcxOWIxMWU0OGEiLCJpYXQiOjE3NDYzNTIyNDYsImV4cCI6MTc0NjM1NTg0Nn0.HkioBNrNzgEJ-6Gq0sd5beqFlJUmujnn16_V1g8VGBQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Miscellanous",
+									"type": "text"
+								},
+								{
+									"key": "icon",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": "http://localhost:3010/api/add-category"
+					},
+					"response": []
+				},
+				{
+					"name": "User's Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE3NDM5MjQ0MzY5NzZmODg3Y2YxYzIiLCJpYXQiOjE3NDY0NzE5MjksImV4cCI6MTc0NjQ3NTUyOX0.uaHZtIQWkphLWrk4WAMioTExrlCl1020HsfTCXw9kQY",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/get-user-categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Default Categories Only",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3010/api/get-default-categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE0OWUzNWU4ZmIzOTcxOWIxMWU0OGEiLCJpYXQiOjE3NDYyMDIzODQsImV4cCI6MTc0NjIwNTk4NH0.MlnTW2AqLB53ju2gRj7JYx20kTNIkg2Ib2k6VaSUTow",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/delete-category/6814a3f06d1ba2b7b80f9d8b"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expense",
+			"item": [
+				{
+					"name": "Add Expense",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE3NDM5MjQ0MzY5NzZmODg3Y2YxYzIiLCJpYXQiOjE3NDczMTA2NTQsImV4cCI6MTc0NzM5NzA1NH0._5PBNNsbixNfOiu_63rx3JK9KFOd0BWHQGG-bITJTMk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 500,\r\n  \"categoryId\": \"6816aef77d374baf6194dfb5\",\r\n  \"note\": \"sunscreen\",\r\n  \"date\": \"2025-05-15\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/add-expense"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Expenses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDkwMjU0MTgsImV4cCI6MTc0OTExMTgxOH0.km93TVleKwEHD80Ppd0VgZMmtfXxLDMbLnqokERDTq8",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/get-expenses"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Expense",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE0OWUzNWU4ZmIzOTcxOWIxMWU0OGEiLCJpYXQiOjE3NDYzMDc2NzYsImV4cCI6MTc0NjMxMTI3Nn0.gFo-KLc8aR1IL-M-jq7PQKpqVaxU7c9-fbumfUIf1-w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"note\":\"Auto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/update-expense/6816942450b6a5a288daedf6"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Expense",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDg3MDc1NjQsImV4cCI6MTc0ODc5Mzk2NH0.D5WK5b5FHYfjPllXepKzMjNm0q42ZBJkWssQloKD1lM",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/delete-expense/683752579dc9d7d52ae7ec72"
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Expense",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDg3MDc1NjQsImV4cCI6MTc0ODc5Mzk2NH0.D5WK5b5FHYfjPllXepKzMjNm0q42ZBJkWssQloKD1lM",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/api/restore-expense/683752579dc9d7d52ae7ec72"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact Us",
+			"item": [
+				{
+					"name": "contact form",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Sreeja Das\",\r\n    \"email\":\"sreejadas200@gmail.com\",\r\n    \"subject\":\"Nice\",\r\n    \"message\":\"Keep up the good work, More to come\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/submit-contact-form"
+					},
+					"response": []
+				},
+				{
+					"name": "Reply to contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reply\":\"Thank You\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/api/reply-to-contact/681e704d95af6a2218acf3ba"
+					},
+					"response": []
+				},
+				{
+					"name": "All Contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3010/api/get-all-contacts"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3010/api/get-contact/681e704d95af6a2218acf3ba"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Add review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM1YjE4MDEzMjQxZDBmMjA0MmFiMjEiLCJpYXQiOjE3NDgzNDkzNzAsImV4cCI6MTc0ODQzNTc3MH0.9WCs0rRhDxjltKQyZYTDuTHMNHzvhcRNvKT16JkTYw4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":\"4\",\r\n    \"comment\":\"Expensio is an efficient and intuitive web-based tool for managing personal finances. It allows users to set budgets, track daily expenses, and visualize their spending habits with ease. With its clean interface and organized dashboard, Expensio empowers users to stay on top of their financial goals and make informed decisions. Perfect for individuals and students looking for a simple yet powerful budgeting solution.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/user/add-review"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3010/user/get-reviews"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDgwMzAwODYsImV4cCI6MTc0ODExNjQ4Nn0.ra-mr6KrE5wxy70abqgCCRbq3Fss1bNvbSL32Ks9moA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/user/delete-review/6830d33398ce5eb06b814dbf"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Review",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDgwMzAwODYsImV4cCI6MTc0ODExNjQ4Nn0.ra-mr6KrE5wxy70abqgCCRbq3Fss1bNvbSL32Ks9moA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/user/get-user-review"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDgwMjk4MzMsImV4cCI6MTc0ODExNjIzM30.jtu6tgNVyxYDhG8A_5XlDvBn5upe2BjW5d6Sf2-SMmk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/user/update-review"
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDgwMzAwODYsImV4cCI6MTc0ODExNjQ4Nn0.ra-mr6KrE5wxy70abqgCCRbq3Fss1bNvbSL32Ks9moA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3010/user/restore-review/6830d33398ce5eb06b814dbf"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI2ZmIyZDQ5ZGQyOTEyZGU0YmY3MWEiLCJpYXQiOjE3NDc2NzU1NjIsImV4cCI6MTc0Nzc2MTk2Mn0.75_hHhm-9jbUAVRZYJSEjw9m99Zzg4RhEnGavjfw9O4",
+								"type": "text"
+							}
+						],
+						"url": "https://expensio-nkvc.onrender.com/user/get-settings"
+					},
+					"response": []
+				},
+				{
+					"name": "Add or Update Settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODFmOGFjZTY2NGRkOTE1YWQxYjU4NmYiLCJpYXQiOjE3NDY4OTc2NzYsImV4cCI6MTc0NjkwMTI3Nn0.fuxgCe5SRe66Zen4Ukw6clTJ_EAIV6Aq2fieZpDx0hI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currency\":\"USD\",\r\n    \"dailyLimit\":1000,\r\n    \"weeklyLimit\":5000,\r\n    \"monthlyLimit\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3010/user/update-settings"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
